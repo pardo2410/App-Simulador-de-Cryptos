@@ -41,8 +41,21 @@ pip install  -r requirements.txt
 pip install --upgrade --force-reinstall -r requirements.txt
 pip freeze > requirements.txt
 ```
+Renombrar el archivo **.env_template** por **.env**
+```
+FLASK_APP=pon aquí tu punto de entrada
+FLASK_ENV=entorno
+```
+debe sustituir los datos por:
+```
+FLASK_APP=run.py
+FLASK_ENV=development
+```
+* **Crear Base de datos Data_myCrypto.db**
 
-* **Crear variable de entorno**
+Debe ejecutar **migrations.sql** con **Sqlite3** en el fichero elegido como base de datos.
+
+* **Crear variable de entorno en el terminal**
 ```
 set FLASK_APP=run.py
 set FLASK_ENV=development
@@ -53,7 +66,9 @@ Visitar la web de CoinMarketCap para conseguir una APIKEY:
 ```
 https://pro.coinmarketcap.com/
 ```
-Introducir su API_KEY y genere su SECRET_KEY en el archivo **config.py** 
+Introducir su API_KEY y genere su SECRET_KEY en el archivo **config_key.py** y renombrelo como **config.py** 
+
+
 
 * **Lanzar aplicación**
 ```
