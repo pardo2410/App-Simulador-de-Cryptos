@@ -2,7 +2,7 @@ CREATE TABLE "cryptos" (
 	"Id"	INTEGER PRIMARY KEY AUTOINCREMENT,
 	"symbol"	TEXT NOT NULL,
 	"name"	TEXT NOT NULL
-)
+);
 
 CREATE TABLE "movements" (
 	"Id"	INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,4 +14,4 @@ CREATE TABLE "movements" (
 	"to_quantity"	REAL NOT NULL,
 	FOREIGN KEY("to_currency") REFERENCES "cryptos"("Id"),
 	FOREIGN KEY("from_currency") REFERENCES "cryptos"("Id")
-)
+);
