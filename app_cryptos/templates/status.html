@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} Status {% endblock %}
+
+{% block content %}
+    <h3 style="text-align:center" class="title">ESTADO DE LA INVERSION</h3>
+    <hr width="100%" size="10" style="color: hsl(0, 0%, 100%);"/>
+    <!--Formulario Vacio-->
+    {% if empty_dataMyCrypto == True %}
+        {% if errorDB %}
+            <h5>{{ errorDB }}</h5>
+        {% endif %}
+        
+        <h5>Invertido:</h5>
+        <h5> 0.00 €</h5>
+
+        <h5>Valor actual:</h5>
+        <h5> 0.00 €</h5>
+
+    {% else %}
+    <!--Formulario Llamanda a la Informacion de Status-->
+        {% if errorAPI %}
+            <p>{{ errorAPI }}</p>
+        {% endif %}
+
+        <h5>Invertido:</h5>
+        <h5>{{ "{:,.3f}".format(Inversion) }} €</h5>
+
+        <h5>Valor actual:</h5>
+        <h5>{{ "{:,.3f}".format(valor_Actual) }} €</h5>
+        
+    {% endif %}
+     <!--Inicio-->
+    <a href="/" class="button button-primary">Inicio</a>
+    {% endblock %}

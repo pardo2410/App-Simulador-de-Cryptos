@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block content %}
+    <h3 style="text-align:center" class="title">MOVIMIENTOS</h3>
+    <hr width="100%" size="10" style="color: hsl(0, 0%, 100%);"/>
+    <!--Tabla de Movimientos-->
+    <table>
+        <thead>
+            <tr>
+                <th>&nbsp;&nbsp;Fecha</th>
+                <th>Hora</th>
+                <th>Divisa</th>
+                <th>Cantidad&nbsp;&nbsp;Divisa</th>
+                <th>Equivalente</th>
+                <th>Cantidad&nbsp;&nbsp;Equivalente</th>
+                <th>Precio&nbsp;&nbsp;Unitario</th>
+            </tr>
+        </thead>
+        {% if errorDB %}
+            <h5 class="error_db_index">{{ errorDB }}</h5>
+        {% endif %}
+        <tbody>
+            {% if not transaccion %}
+                <tr>
+                    <td class="empty">-- empty --</td>
+                </tr>
+            {% else %}
+                {% for operation in transaccion%}
+                    <tr>
+                        <td>{{ operation[0]}}</td>
+                        <td>{{ operation[1]}}</td>
+                        <td>{{ operation[2]}}</td>
+                        <td>{{ "{:,.5f}".format(operation[3])}}</td>
+                        <td>{{ operation[4] }}</td>
+                        <td>{{ "{:,.3f}".format(operation[5])}}</td>
+                        <td>{{ "{:,.5f}".format(operation[3]/operation[5]) }}&nbsp;{{ operation[2] }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    <!--Grupo de Botones de Navegacion Tabla-->
+        <div class="btn-group">
+            <a href="/status" class="button button-primary">Status</a> 
+            <a href="/purchase" class="button button-primary">+</a>
+        </div>
+{% endblock %}

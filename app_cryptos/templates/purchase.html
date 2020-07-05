@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %} Purchase {% endblock %}
+
+
+{% block content %}
+    <h3 style="text-align:center" class="title">COMPRA DE CRYPTOS</h3>
+    <hr width="100%" size="10" style="color: white;"/>
+    <p class="from_purchase">Divisa:</p>
+    <form action="/purchase" method="post">
+        {{ form.hidden_tag() }}
+        <!--Seleccion Moneda-->
+        {{ form.list_divisa(class="selector1", style="width:200px") }}
+
+        <p class="to_purchase">Divisa de Cambio:</p>
+        <!--Seleccion Moneda-->
+        {{ form.list_equivalente(class="selector2", style="width:200px") }}
+
+        <!--Campo Cantidad-->
+        {{ form.cantidad_Divisa(class="q_input", style="width:150px", placeholder="Cantidad") }}
+
+        <!--Calcular-->
+        {{ form.calcular_equivalente()}}
+        <!--Cantidad Equivalente-->
+        <p>Cantidad&nbsp;&nbsp;Equivalente:</p> 
+        <p>{{ "{:,.5f}".format(data[0]) }} {{ data[2] }} </p>
+        <!--Precio Unitario-->
+        <p class="p_u">Precio&nbsp;&nbsp;Unitario:</p>
+        <p class="p_u_cant">{{"{:,.5f}".format(data[1]) }} {{ data[2] }}</p>
+        
+        <!--Restricciones-->
+
+        {% if validError %}
+        <p>{{ validError }}</p>
+        {% endif %}
+        {% if EqualCurrency %}
+        <p>{{ EqualCurrency }}</p>
+        {% endif %}
+        {% if InvalidExchange %}
+        <p>{{ InvalidExchange }} 
+        {% endif %}
+        {% if alert %}
+        <p>{{ alert }}</p>
+        {% endif %}
+        {% if errorAPI %}
+        <p>{{ errorAPI }}</p>
+        {% endif %}
+        {% if errorDB %}
+        <p>{{ errorDB }}</p>
+        {% endif %}
+        {% if insufficientCurrency %}
+        <p>{{ insufficientCurrency }}</p>
+        {% endif %}
+
+        <!--Aceptar-->
+        {{ form.Op_Comprar(class="btn_purchase")}}
+        <!--Borrar-->
+        <a href="/purchase " class="button button-primary">Borrar</a> 
+    </form>
+    
+    
+{% endblock %}
