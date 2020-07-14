@@ -15,12 +15,12 @@ from requests.exceptions import ConnectionError
 from requests.exceptions import Timeout
 from requests.exceptions import TooManyRedirects
 
-dataRoute = './data/Data_myCrypto.db'
+
 API_KEY=app.config['API_KEY']
 
 def dataQuery(consulta):
 
-    conn = sqlite3.connect(dataRoute)
+    conn = sqlite3.connect(app.config['BASE_DATOS'])
     cursor = conn.cursor()
 
     consulta = cursor.execute(consulta).fetchall()
@@ -136,7 +136,7 @@ def purchase():
 
             if saldo >= quant or list_divisa == 'EUR':
 
-                conn = sqlite3.connect(dataRoute)
+                conn = sqlite3.connect(app.config['BASE_DATOS'])
                 cursor = conn.cursor()
                 transaccion  = "INSERT INTO MOVEMENTS(date, time, from_currency, from_quantity, to_currency, to_quantity) VALUES(?, ?, ?, ?, ?, ?);"
 
@@ -191,27 +191,20 @@ def status():
 
     # Calculo Euros inversion y Saldo de euros invertidos
     try:
-
         empty_dataMyCrypto = dataQuery("SELECT date, time, from_currency, from_quantity, to_currency, to_quantity FROM MOVEMENTS;")
-
     except sqlite3.Error:
-
         Inversion = 0
         valor_Actual = 0
         errorDB = "Error establishing a database connection."
         return render_template("status.html", route='status', errorDB=errorDB, empty_dataMyCrypto=True)
 
     if empty_dataMyCrypto == None:
-
         return render_template("status.html", route='status', empty_dataMyCrypto=True)
 
     try:
-
         InverFrom= dataQuery('SELECT SUM(from_quantity) FROM MOVEMENTS WHERE from_currency LIKE "%EUR%";')
         InverTo= dataQuery('SELECT SUM(to_quantity) FROM MOVEMENTS WHERE to_currency LIKE "%EUR%";') 
-
     except sqlite3.Error:
-
         Inversion = 0
         valor_Actual = 0
         errorDB = "Error establishing a database connection."
@@ -223,20 +216,15 @@ def status():
     for cont1 in range(len(InverFrom)):
 
         if InverFrom[cont1] == (None,):
-
             totalInverFrom += 0
-
         else:
-
             InverFromInt = InverFrom[cont1][0]
             totalInverFrom += InverFromInt
 
     for cont2 in range(len(InverTo)):
 
         if InverTo[cont2] == (None,):
-
             totalInverTo += 0
-
         else:
 
             InverToInt = InverTo[cont2][0]
