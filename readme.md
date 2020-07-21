@@ -51,7 +51,7 @@ debe sustituir los datos por:
 FLASK_APP=run.py
 FLASK_ENV=development
 ```
-* **Crear Base de datos Data_myCrypto.db**
+* **Crear Base de datos**
 
 Debe ejecutar **migrations.sql** con **Sqlite3** en el fichero elegido como base de datos.
 
@@ -74,7 +74,7 @@ flask run
 ```
 ## Database 🛠️
 
-El siguiente apartado corresponde a los esquemas de las tablas usadas en la base de datos **Data_myCrypto.db**
+El siguiente apartado corresponde a los esquemas de las tablas usadas en la base de datos
 
 **MOVEMENTS**
 
@@ -96,7 +96,7 @@ El siguiente apartado corresponde a los esquemas de las tablas usadas en la base
 | symbol | Text |
 | name | Text |
 
-las monedas o cryptomonedas utilizadas para el desarrollo de este simulador fueron: 
+Las monedas o cryptomonedas utilizadas para el desarrollo de este simulador son: 
 
 **EUR, BTC, ETH, XRP, LTC, BCH, BNB, USDT, EOS,BSV, XLM, ADA, TRX.**
 
