@@ -203,7 +203,9 @@ def status():
 
     try:
         InverFrom= dataQuery('SELECT SUM(from_quantity) FROM MOVEMENTS WHERE from_currency LIKE "%EUR%";')
+        print(InverFrom)
         InverTo= dataQuery('SELECT SUM(to_quantity) FROM MOVEMENTS WHERE to_currency LIKE "%EUR%";') 
+        print(InverTo)
     except sqlite3.Error:
         Inversion = 0
         valor_Actual = 0
@@ -213,23 +215,19 @@ def status():
     totalInverFrom = 0
     totalInverTo = 0
 
-    for cont1 in range(len(InverFrom)):
+    if InverFrom[0] == (None,):
+        totalInverFrom += 0
+    else:
+        InverFromInt = InverFrom[0][0]
+        totalInverFrom += InverFromInt
 
-        if InverFrom[cont1] == (None,):
-            totalInverFrom += 0
-        else:
-            InverFromInt = InverFrom[cont1][0]
-            totalInverFrom += InverFromInt
-
-    for cont2 in range(len(InverTo)):
-
-        if InverTo[cont2] == (None,):
-            totalInverTo += 0
-        else:
-
-            InverToInt = InverTo[cont2][0]
-            totalInverTo += InverToInt
-
+    if InverTo[0] == (None,):
+        totalInverTo += 0
+    else:
+        InverToInt = InverTo[0][0]
+        totalInverTo += InverToInt
+    print(totalInverFrom)
+    print(totalInverTo)
     Inversion = totalInverFrom
     totalSaldoInver = totalInverTo - totalInverFrom
 

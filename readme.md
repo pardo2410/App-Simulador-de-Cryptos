@@ -66,9 +66,7 @@ Visitar la web de CoinMarketCap para conseguir una APIKEY:
 ```
 https://pro.coinmarketcap.com/
 ```
-Introducir su API_KEY y genere su SECRET_KEY en el archivo **config_key.py** y renombrelo como **config.py** 
-
-
+Introducir su API_KEY, genere su SECRET_KEY y determine la ruta de la BASE_DATOS en el archivo **config_key.py** y renombrelo como **config.py** 
 
 * **Lanzar aplicación**
 ```
