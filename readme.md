@@ -99,7 +99,3 @@ El siguiente apartado corresponde a los esquemas de las tablas usadas en la base
 Las monedas o cryptomonedas utilizadas para el desarrollo de este simulador son: 
 
 **EUR, BTC, ETH, XRP, LTC, BCH, BNB, USDT, EOS,BSV, XLM, ADA, TRX.**
-
-## Run AWS MyCrypto Simulation 🏃
-
-* [AWS MyCrypto Simulation](http://3.135.238.140/) - MyCrypto
